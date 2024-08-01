@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('nama', 50);
             $table->string('email', 50);
             $table->string('password');
-            $table->string('jabatan', 50);
+            $table->enum('jabatan', ['asisten ahli', 'lektor', 'lektor kepala', 'guru besar']);
             $table->string('pangkat', 50);
             $table->string('foto')->nullable();
             $table->text('alamat');

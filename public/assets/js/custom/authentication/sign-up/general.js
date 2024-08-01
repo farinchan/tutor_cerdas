@@ -320,7 +320,7 @@ var KTSignupGeneral = function () {
         return (passwordMeter.getScore() > 50);
     }
 
-    var isValidUrl = function(url) {
+    var isValidUrl = function (url) {
         try {
             new URL(url);
             return true;

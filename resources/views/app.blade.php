@@ -123,6 +123,7 @@ License: For each use you must have a valid license purchased only from above li
     <script src="assets/js/custom/utilities/modals/users-search.js"></script>
     <!--end::Custom Javascript-->
     <!--end::Javascript-->
+    @include('sweetalert::alert')
 </body>
 <!--end::Body-->
 
