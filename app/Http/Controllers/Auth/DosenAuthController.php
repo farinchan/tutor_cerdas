@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Dosen;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class DosenAuthController extends Controller
 {
@@ -16,15 +18,23 @@ class DosenAuthController extends Controller
 
     public function login(Request $request)
     {
-        $credentials = $request->only('email', 'password');
+        $validator = Validator::make($request->all(), [
+            'nidn' => 'required|string',
+            'password' => 'required|string',
+        ],
+        [
+            'required' => ':attribute wajib diisi',
+            'string' => ':attribute harus berupa string',
+        ]);
 
-        if (Auth::guard('dosen')->attempt($credentials)) {
-            return redirect()->route('dosen.home');
+        if ($validator->fails()) {
+            Alert::error('Login Gagal', $validator->errors()->all() );
+            return back();
         }
 
-        return back()->withErrors([
-            'email' => 'The provided credentials do not match our records.',
-        ]);
+        if (Auth::guard('dosen')->attempt(['nidn' => $request->nidn, 'password' => $request->password])) {
+            return redirect()->route('home');
+        }
     }
 
     public function logout()

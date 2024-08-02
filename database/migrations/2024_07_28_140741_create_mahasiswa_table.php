@@ -14,13 +14,12 @@ return new class extends Migration
         Schema::create('mahasiswa', function (Blueprint $table) {
             $table->unsignedBigInteger('nim')->primary();
             $table->string('nama', 50);
-            $table->string('email', 50);
-            $table->string('password');
             $table->string('foto')->nullable();
             $table->text('alamat');
             $table->enum('jenis_kelamin', ['L', 'P']);
             $table->enum('agama', ['Islam', 'Kristen', 'Katolik', 'Hindu', 'Budha', 'Konghucu']);
             $table->string('jurusan', 50);
+            $table->foreignId('user_id')->constrained('users');
             $table->timestamps();
         });
     }

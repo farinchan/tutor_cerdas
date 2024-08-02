@@ -2,21 +2,20 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
-use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Dosen extends Model implements AuthenticatableContract
+class Dosen extends Model
 {
-    use HasFactory, Authenticatable;
-
+    use HasFactory;
 
     protected $table = 'dosen';
     protected $primaryKey = 'nidn';
     protected $guarded = [];
 
-    protected $hidden = [
-        'password', 'remember_token',
-    ];
+    public function user()
+    {
+        return $this->morphOne(User::class, 'userable');
+    }
+    
 }

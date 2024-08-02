@@ -45,6 +45,7 @@
             document.documentElement.setAttribute("data-bs-theme", themeMode);
         }
     </script>
+    
     <div class="d-flex flex-column flex-root">
         <div class="d-flex flex-column flex-lg-row flex-column-fluid">
             <a href="index.html" class="d-block d-lg-none mx-auto py-20">
@@ -52,10 +53,12 @@
                 <img alt="Logo" src="assets/media/logos/default-dark.svg" class="theme-dark-show h-25px" />
             </a>
             @yield('content')
+            
             <div class="d-none d-lg-flex flex-lg-row-fluid w-50 bgi-size-cover bgi-position-y-center bgi-position-x-start bgi-no-repeat"
                 style="background-image: url(assets/media/auth/bg11.png)"></div>
         </div>
     </div>
+    
     <script>
         var hostUrl = "assets/";
     </script>
@@ -63,6 +66,9 @@
     <script src="assets/js/scripts.bundle.js"></script>
     {{-- <script src="assets/js/custom/authentication/sign-up/dosen.js"></script> --}}
     <script src="assets/js/custom/authentication/sign-in/i18n.js"></script>
+
+    @include('sweetalert::alert')
+
 </body>
 
 </html>
