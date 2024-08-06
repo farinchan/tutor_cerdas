@@ -26,7 +26,7 @@ class AuthController extends Controller
         $validator = Validator::make($request->all(), [
             'email' => 'required|email',
             'password' => 'required'
-        ],[
+        ], [
             'required' => ':attribute tidak boleh kosong',
             'email' => ':attribute harus berupa email'
         ]);
@@ -44,13 +44,15 @@ class AuthController extends Controller
 
     public function registerProcess(Request $request)
     {
+        // dd($request->all());
         $validator = Validator::make($request->all(), [
             'email' => 'required|email',
             'password' => 'required',
-            'role' => 'required'
-        ],[
+            'role' => 'required|in:mahasiswa,dosen'
+        ], [
             'required' => ':attribute tidak boleh kosong',
-            'email' => ':attribute harus berupa email'
+            'email' => ':attribute harus berupa email',
+            'in' => ':attribute harus salah satu dari :values'
         ]);
 
         if ($validator->fails()) {
@@ -59,10 +61,6 @@ class AuthController extends Controller
         }
 
         if ($request->role == 'mahasiswa') {
-            $user = User::create([
-                'email' => $request->email,
-                'password' => bcrypt($request->password)
-            ]);
 
             $validator_mhs = Validator::make($request->all(), [
                 'nim' => 'required|numeric',
@@ -72,7 +70,7 @@ class AuthController extends Controller
                 'jenis_kelamin' => 'required|in:L,P',
                 'agama' => 'required|in:Islam,Kristen,Katolik,Hindu,Budha,Konghucu',
                 'jurusan' => 'required|string'
-            ],[
+            ], [
                 'required' => ':attribute tidak boleh kosong',
                 'numeric' => ':attribute harus berupa angka',
                 'string' => ':attribute harus berupa huruf',
@@ -82,15 +80,25 @@ class AuthController extends Controller
                 'in' => ':attribute harus salah satu dari :values'
             ]);
 
+
             if ($validator_mhs->fails()) {
                 Alert::error('Error', $validator_mhs->errors()->all());
                 return redirect()->back();
             }
 
+            $user = User::create([
+                'email' => $request->email,
+                'password' => bcrypt($request->password)
+            ]);
+
+            if ($request->hasFile('foto')) {
+                $request->file('foto')->storeAs('public/foto', $request->nim . "-" . $request->nama . "." . $request->file('foto')->getClientOriginalExtension());
+            }
+
             $user->mahasiswa()->create([
                 'nim' => $request->nim,
                 'nama' => $request->nama,
-                'foto' => $request->foto,
+                'foto' => $request->nim . "-" . $request->nama . "." . $request->file('foto')->getClientOriginalExtension(),
                 'alamat' => $request->alamat,
                 'jenis_kelamin' => $request->jenis_kelamin,
                 'agama' => $request->agama,
@@ -99,12 +107,8 @@ class AuthController extends Controller
 
             Alert::success('Success', 'Registrasi berhasil');
             return redirect()->route('login');
-
         } else {
-            $user = User::create([
-                'email' => $request->email,
-                'password' => bcrypt($request->password)
-            ]);
+
 
             $validator_dosen = Validator::make($request->all(), [
                 'nidn' => 'required|numeric',
@@ -113,8 +117,10 @@ class AuthController extends Controller
                 'alamat' => 'required|string',
                 'jenis_kelamin' => 'required|in:L,P',
                 'agama' => 'required|in:Islam,Kristen,Katolik,Hindu,Budha,Konghucu',
-                'jabatan' => 'required|string'
-            ],[
+                'jabatan' => 'required|string',
+                'pangkat' => 'nullable|string',
+                'pendidikan_terakhir' => 'required|string'
+            ], [
                 'required' => ':attribute tidak boleh kosong',
                 'numeric' => ':attribute harus berupa angka',
                 'string' => ':attribute harus berupa huruf',
@@ -129,18 +135,28 @@ class AuthController extends Controller
                 return redirect()->back();
             }
 
+
+            $user = User::create([
+                'email' => $request->email,
+                'password' => bcrypt($request->password),
+                'role' => $request->role
+            ]);
+
+
             if ($request->hasFile('foto')) {
-                $request->file('foto')->move('images/', $request->file('foto')->getClientOriginalName());
+                $request->file('foto')->storeAs('public/foto', $request->nidn . "-" . $request->nama . "." . $request->file('foto')->getClientOriginalExtension());
             }
 
             $user->dosen()->create([
                 'nidn' => $request->nidn,
                 'nama' => $request->nama,
-                'foto' => $request->foto,
+                'foto' => $request->nidn . "-" . $request->nama . "." . $request->file('foto')->getClientOriginalExtension(),
                 'alamat' => $request->alamat,
                 'jenis_kelamin' => $request->jenis_kelamin,
                 'agama' => $request->agama,
-                'jabatan' => $request->jabatan
+                'jabatan' => $request->jabatan,
+                'pangkat' => $request->pangkat,
+                'pendidikan_terakhir' => $request->pendidikan_terakhir
             ]);
 
             Alert::success('Success', 'Registrasi berhasil');

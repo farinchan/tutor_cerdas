@@ -6,15 +6,15 @@
             <div class="me-2"></div>
             <div class="m-0">
                 <span class="text-gray-500 fw-bold fs-5 me-2" data-kt-translate="sign-in-head-desc">Belum Punya Akun?</span>
-                <a href="{{ route("dosen.register") }}" class="link-primary fw-bold fs-5" data-kt-translate="sign-in-head-link">Daftar</a>
+                <a href="{{ route("register") }}" class="link-primary fw-bold fs-5" data-kt-translate="sign-in-head-link">Daftar</a>
             </div>
         </div>
         <div class="py-20">
-            <form class="form w-100" novalidate="novalidate" id="kt_sign_in_form" action="{{ route("dosen.loginProcess") }}" method="POST">
+            <form class="form w-100" novalidate="novalidate" id="kt_sign_in_form" action="{{ route("login.process") }}" method="POST">
                 @csrf
                 <div class="card-body">
                     <div class="text-start mb-10">
-                        <h1 class="text-gray-900 mb-3 fs-3x" data-kt-translate="sign-in-title">Login Dosen
+                        <h1 class="text-gray-900 mb-3 fs-3x" data-kt-translate="sign-in-title">Login
 
                         </h1>
                         <div class="text-gray-500 fw-semibold fs-6" data-kt-translate="general-desc">
