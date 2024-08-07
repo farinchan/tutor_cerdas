@@ -12,10 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('kelas_mahasiswa', function (Blueprint $table) {
-            $table->id();
+        $table->id();
         $table->unsignedBigInteger('nim');
         $table->foreign('nim')->references('nim')->on('mahasiswa')->onUpdate('cascade')->onDelete('cascade');
-        $table->uuid('kode_kelas');
+        $table->string('kode_kelas', 10);
         $table->foreign('kode_kelas')->references('kode_kelas')->on('kelas')->onUpdate('cascade')->onDelete('cascade');
         $table->enum('status', ['aktif', 'nonaktif'])->default('nonaktif');
         $table->timestamps();

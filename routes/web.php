@@ -20,6 +20,7 @@ Route::prefix('dosen')->name('dosen.')->group(function () {
     
     Route::prefix('kelas')->name('kelas.')->group(function () {
         Route::get('/', [DosenKelasController::class, 'index'])->name('index');
+        Route::post('/store', [DosenKelasController::class, 'store'])->name('store');
     });
 
 });

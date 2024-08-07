@@ -20,11 +20,11 @@ return new class extends Migration
             $table->string('link')->nullable();
             $table->string('file')->nullable();
             $table->string('video')->nullable();
-            $table->string('kode_mk', 10);
-            $table->foreign('kode_mk')->references('kode_mk')->on('matakuliah')->onUpdate('cascade')->onDelete('cascade');
+            $table->unsignedBigInteger('kode_mk'); // Add kode_mk column
+            $table->foreign('kode_mk')->references('kode_mk')->on('matakuliah')->onUpdate('cascade')->onDelete('cascade');            
             $table->unsignedBigInteger('nidn');
             $table->foreign('nidn')->references('nidn')->on('dosen')->onUpdate('cascade')->onDelete('cascade');
-            $table->uuid('kode_kelas');
+            $table->string('kode_kelas', 10);
             $table->foreign('kode_kelas')->references('kode_kelas')->on('kelas')->onUpdate('cascade')->onDelete('cascade');
             $table->enum('status', ['aktif', 'nonaktif']);
             $table->timestamps();

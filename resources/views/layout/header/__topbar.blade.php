@@ -22,6 +22,7 @@
         @include('partials/theme-mode/_main')
     </div>
 
+    @auth
     <div class="d-flex align-items-center ms-3 ms-lg-4" id="kt_header_user_menu_toggle">
         <!--begin::Menu- wrapper-->
         <!--begin::User icon(remove this button to use user avatar as menu toggle)-->
@@ -33,6 +34,8 @@
         @include('partials/menus/_user-account-menu')
         <!--end::Menu wrapper-->
     </div>
+    @endauth
+    
 
     @guest
         <div class="d-flex align-items-center ms-3 ms-lg-4">
