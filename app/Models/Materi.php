@@ -12,4 +12,8 @@ class Materi extends Model
     protected $table = 'materi';
     protected $primaryKey = 'id';
     protected $guarded = [];
+
+    protected $casts = [
+        'file' => 'array',
+    ];
 }

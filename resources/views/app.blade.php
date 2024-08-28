@@ -28,16 +28,18 @@
     <meta property="og:url" content="https://keenthemes.com/metronic" />
     <meta property="og:site_name" content="Metronic by Keenthemes" />
     <link rel="canonical" href="http://preview.keenthemes.com?page=index" />
-    <link rel="shortcut icon" href="{{ asset("assets/media/logos/favicon.ico") }}" />
+    <link rel="shortcut icon" href="{{ asset('assets/media/logos/favicon.ico') }}" />
     <!--begin::Fonts(mandatory for all pages)-->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,400,500,600,700" /> <!--end::Fonts-->
     <!--begin::Vendor Stylesheets(used for this page only)-->
-    <link href="{{ asset("assets/plugins/custom/fullcalendar/fullcalendar.bundle.css") }}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset("assets/plugins/custom/datatables/datatables.bundle.css") }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/plugins/custom/fullcalendar/fullcalendar.bundle.css') }}" rel="stylesheet"
+        type="text/css" />
+    <link href="{{ asset('assets/plugins/custom/datatables/datatables.bundle.css') }}" rel="stylesheet"
+        type="text/css" />
     <!--end::Vendor Stylesheets-->
     <!--begin::Global Stylesheets Bundle(mandatory for all pages)-->
-    <link href="{{ asset("assets/plugins/global/plugins.bundle.css") }}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset("assets/css/style.bundle.css") }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/plugins/global/plugins.bundle.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/css/style.bundle.css') }}" rel="stylesheet" type="text/css" />
     <!--end::Global Stylesheets Bundle-->
     <script>
         // Frame-busting to prevent site from being loaded within a frame without permission (click-jacking)
@@ -50,7 +52,7 @@
 <!--begin::Body-->
 
 <body id="kt_body" class="header-fixed header-tablet-and-mobile-fixed toolbar-enabled">
-    @include("partials/theme-mode/_init")
+    @include('partials/theme-mode/_init')
     <!--begin::Main-->
     <!--begin::Root-->
     <div class="d-flex flex-column flex-root">
@@ -58,7 +60,7 @@
         <div class="page d-flex flex-row flex-column-fluid">
             <!--begin::Wrapper-->
             <div class="wrapper d-flex flex-column flex-row-fluid" id="kt_wrapper">
-                @include("layout/header/_base")
+                @include('layout/header/_base')
                 @yield('subheader')
                 <!--begin::Container-->
                 <div id="kt_content_container" class="d-flex flex-column-fluid align-items-start  container-xxl ">
@@ -67,32 +69,32 @@
                     <!--end::Post-->
                 </div>
                 <!--end::Container-->
-                @include("layout/_footer")
+                @include('layout/_footer')
             </div>
             <!--end::Wrapper-->
         </div>
         <!--end::Page-->
     </div>
     <!--end::Root-->
-    @include("partials/_drawers")
+    @include('partials/_drawers')
     <!--end::Main-->
-    @include("partials/_scrolltop")
+    @include('partials/_scrolltop')
     <!--begin::Modals-->
-    @include("partials/modals/create-campaign/_main")
-    @include("partials/modals/_invite-friends")
-    @include("partials/modals/users-search/_main")
+    @include('partials/modals/create-campaign/_main')
+    @include('partials/modals/_invite-friends')
+    @include('partials/modals/users-search/_main')
     <!--end::Modals-->
     <!--begin::Javascript-->
     <script>
         var hostUrl = "assets/";
     </script>
     <!--begin::Global Javascript Bundle(mandatory for all pages)-->
-    <script src="{{ asset("assets/plugins/global/plugins.bundle.js") }}"></script>
-    <script src="{{ asset("assets/js/scripts.bundle.js") }}"></script>
+    <script src="{{ asset('assets/plugins/global/plugins.bundle.js') }}"></script>
+    <script src="{{ asset('assets/js/scripts.bundle.js') }}"></script>
     <!--end::Global Javascript Bundle-->
     <!--begin::Vendors Javascript(used for this page only)-->
-    <script src="{{ asset("assets/plugins/custom/fullcalendar/fullcalendar.bundle.js") }}"></script>
-    <script src="https://cdn.amcharts.com/lib/5/index.js"></script>
+    {{-- <script src="{{ asset("assets/plugins/custom/fullcalendar/fullcalendar.bundle.js") }}"></script> --}}
+    {{-- <script src="https://cdn.amcharts.com/lib/5/index.js"></script>
     <script src="https://cdn.amcharts.com/lib/5/xy.js"></script>
     <script src="https://cdn.amcharts.com/lib/5/percent.js"></script>
     <script src="https://cdn.amcharts.com/lib/5/radar.js"></script>
@@ -102,18 +104,19 @@
     <script src="https://cdn.amcharts.com/lib/5/geodata/continentsLow.js"></script>
     <script src="https://cdn.amcharts.com/lib/5/geodata/usaLow.js"></script>
     <script src="https://cdn.amcharts.com/lib/5/geodata/worldTimeZonesLow.js"></script>
-    <script src="https://cdn.amcharts.com/lib/5/geodata/worldTimeZoneAreasLow.js"></script>
-    <script src="{{ asset("assets/plugins/custom/datatables/datatables.bundle.js") }}"></script>
+    <script src="https://cdn.amcharts.com/lib/5/geodata/worldTimeZoneAreasLow.js"></script> --}}
+    <script src="{{ asset('assets/plugins/custom/datatables/datatables.bundle.js') }}"></script>
     <!--end::Vendors Javascript-->
     <!--begin::Custom Javascript(used for this page only)-->
-    <script src="{{ asset("assets/js/widgets.bundle.js") }}"></script>
-    <script src="{{ asset("assets/js/custom/widgets.js") }}"></script>
-    <script src="{{ asset("assets/js/custom/apps/chat/chat.js") }}"></script>
+    {{-- <script src="{{ asset("assets/js/widgets.bundle.js") }}"></script> --}}
+    {{-- <script src="{{ asset("assets/js/custom/widgets.js") }}"></script> --}}
+    {{-- <script src="{{ asset("assets/js/custom/apps/chat/chat.js") }}"></script>
     <script src="{{ asset("assets/js/custom/utilities/modals/create-campaign.js") }}"></script>
-    <script src="{{ asset("assets/js/custom/utilities/modals/users-search.js") }}"></script>
+    <script src="{{ asset("assets/js/custom/utilities/modals/users-search.js") }}"></script> --}}
     <!--end::Custom Javascript-->
     <!--end::Javascript-->
     @include('sweetalert::alert')
+    @yield('scripts')
 </body>
 <!--end::Body-->
 

@@ -13,20 +13,20 @@ return new class extends Migration
     {
         Schema::create('materi', function (Blueprint $table) {
             $table->id();
-            $table->string('judul', 50);
+            $table->string('judul');
             $table->text('deskripsi');
             $table->text('isi_materi');
             $table->string('gambar')->nullable();
             $table->string('link')->nullable();
-            $table->string('file')->nullable();
+            $table->json('file')->nullable();
             $table->string('video')->nullable();
-            $table->unsignedBigInteger('kode_mk'); // Add kode_mk column
-            $table->foreign('kode_mk')->references('kode_mk')->on('matakuliah')->onUpdate('cascade')->onDelete('cascade');            
+            // $table->unsignedBigInteger('kode_mk'); // Add kode_mk 
+            // $table->foreign('kode_mk')->references('kode_mk')->on('matakuliah')->onUpdate('cascade')->onDelete('cascade');            
             $table->unsignedBigInteger('nidn');
             $table->foreign('nidn')->references('nidn')->on('dosen')->onUpdate('cascade')->onDelete('cascade');
             $table->string('kode_kelas', 10);
             $table->foreign('kode_kelas')->references('kode_kelas')->on('kelas')->onUpdate('cascade')->onDelete('cascade');
-            $table->enum('status', ['aktif', 'nonaktif']);
+            $table->enum('status', ['draft', 'published'])->default('draft');
             $table->timestamps();
         });
     }

@@ -60,4 +60,16 @@ class KelasController extends Controller
         Alert::success('Berhasil', 'Kelas berhasil ditambahkan');
         return redirect()->back();
     }
+
+    public function show($kode_kelas)
+    {
+        $kelas = Kelas::where('kode_kelas', $kode_kelas)->with(['matakuliah', 'dosen', 'mahasiswa', 'materi'])->first();
+        $data = [
+            'title' => 'Detail Kelas',
+            'menu' => 'kelas',
+            'sub_menu' => 'kelas',
+            'kelas' => $kelas
+        ];
+        return view('pages.kelas.kelas_dosen', $data);
+    }
 }

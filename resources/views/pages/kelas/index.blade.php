@@ -182,7 +182,8 @@
                             </div>
                         </div>
                         <div class="card-footer bg-light py-5 text-end">
-                            <a href="" class="btn btn-light-primary fw-bold">
+                            <button type="button"  class="btn btn-light-primary fw-bold" data-bs-toggle="tooltip" data-bs-placement="bottom" 
+                            title="KLik untuk copy kode kelas" data-clipboard-text="{{ $row->kode_kelas }}">
                                 <i class="ki-duotone ki-barcode fs-2x">
                                     <span class="path1"></span>
                                     <span class="path2"></span>
@@ -193,8 +194,9 @@
                                     <span class="path7"></span>
                                     <span class="path8"></span>
                                 </i>
-                            </a>
-                            <a href="" class="btn btn-light-primary fw-bold">
+                                {{ $row->kode_kelas }}
+                            </button>
+                            <a href="{{ route("dosen.kelas.show", $row->kode_kelas) }}" class="btn btn-light-primary fw-bold">
                                 <i class="ki-duotone ki-book fs-2x">
                                     <span class="path1"></span>
                                     <span class="path2"></span>
